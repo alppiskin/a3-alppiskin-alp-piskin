@@ -12,7 +12,7 @@ router.get('/home', shallNotPass, (req, res) => res.render('home', { user: req.u
 router.post('/home/list', function(req, res, next) {
   console.log(req.body);
   let user = User.findById(req.user._id);
-  user.update({_id: req.user._id}, {$push: {watchlist: req.body}}, {upsert: true},function(err, main) {
+  user.findOneAndUpdate({_id: req.user._id}, {$push: {watchlist: req.body}}, {upsert: true},function(err, main) {
         res.redirect('/home');
   });
 });
