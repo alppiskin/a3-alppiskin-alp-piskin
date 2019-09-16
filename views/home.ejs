@@ -1,0 +1,91 @@
+<h2 class="mb-4 mt-4">Your Watchlist</h2>
+<a href="/users/logout" class="btn btn-outline-secondary">Logout</a>
+<p class="lead m-3 mt-4">Welcome back <%= user.name %>. What will you watch next?</p>
+<section class="entry">
+  <form action="/home/list" method="POST">
+      <div class="form-group">
+        <label for="genre">Genre</label>
+          <select class="custom-select" name="genre">
+            <option value="action">Action</option>
+            <option value="adventure">Adventure</option>
+            <option value="comedy">Comedy</option>
+            <option value="drama">Drama</option>
+            <option value="fantasy">Fantasy</option>
+            <option value="romance">Romance</option>
+            <option value="science-fiction">Science Fiction</option>
+            <option value="western">Western</option>
+          </select> 
+      </div>
+      <div class="form-group">
+      <label for="Input" class="col-xs-2 control-label">Input</label>
+      <div class="col-xs-10">
+        <div class="form-inline">
+          <div class="form-group">
+            <input
+              type="name"
+              id="name"
+              name="name"
+              class="form-control"
+              placeholder="Name"
+              value="<%= typeof name != 'undefined' ? name : '' %>"
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="director"
+              id="director"
+              name="director"
+              class="form-control"
+              placeholder="Director"
+              value="<%= typeof email != 'undefined' ? email : '' %>"
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="rating"
+              id="rating"
+              name="rating"
+              class="form-control"
+              placeholder="Rating"
+              value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
+            />
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">
+              Submit
+            </button>
+          </div>
+        </div>
+      </div>
+</form>
+</section>
+
+<table class="table table-hover mt-5">
+  <thead>
+    <tr class="table-dark">
+      <th scope="col">Genre</th>
+      <th scope="col">Name</th>
+      <th scope="col">Director</th>
+      <th scope="col">Rating</th>
+      <th scope="col">Edit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%user.watchlist.forEach( film => {%>
+      <tr>
+        <th scope="row"><b><%=film.genre%></b></th>
+        <td><%=film.name%></td>
+        <td><%=film.director%></td>
+        <td><%=film.rating%></td>
+        <td>
+          <button type="submit" class="btn btn-danger">
+            Delete
+          </button>
+          <button type="submit" class="btn btn-warning">
+            Modify
+          </button>
+        </td>
+      </tr>
+    <%});%>
+  </tbody>
+</table> 
