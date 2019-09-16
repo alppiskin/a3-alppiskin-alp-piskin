@@ -1,6 +1,6 @@
 <h2 class="mb-4 mt-4">Your Watchlist</h2>
 <a href="/users/logout" class="btn btn-outline-secondary">Logout</a>
-<p class="lead m-3 mt-4">Welcome back <%= user.name %>. What will you watch next?</p>
+<p class="lead m-3 mt-4">Welcome back <%= user.name %>. What show / film will you watch next?</p>
 <section class="entry">
   <form action="/home/list" method="POST">
       <div class="form-group">
@@ -17,7 +17,7 @@
           </select> 
       </div>
       <div class="form-group">
-      <label for="Input" class="col-xs-2 control-label">Input</label>
+      <label for="Input" class="col-xs-2 control-label">Input / Edit existing below:</label>
       <div class="col-xs-10">
         <div class="form-inline">
           <div class="form-group">
@@ -41,14 +41,20 @@
             />
           </div>
           <div class="form-group">
-            <input
-              type="rating"
-              id="rating"
-              name="rating"
-              class="form-control"
-              placeholder="Rating"
-              value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
-            />
+          <select class="custom-select" name="rating">
+            <option value="" disabled selected>Rating</option>
+            <option value="0.0">0.0</option>
+            <option value="1.0">1.0</option>
+            <option value="2.0">2.0</option>
+            <option value="3.0">3.0</option>
+            <option value="4.0">4.0</option>
+            <option value="5.0">5.0</option>
+            <option value="6.0">6.0</option>
+            <option value="7.0">7.0</option>
+            <option value="8.0">8.0</option>
+            <option value="9.0">9.0</option>
+            <option value="10.0">10.0</option>
+          </select> 
           </div>
           <div class="form-group">
             <button type="submit" class="btn btn-primary btn-block">
@@ -78,12 +84,12 @@
         <td><%=film.director%></td>
         <td><%=film.rating%></td>
         <td>
-          <button type="submit" class="btn btn-danger">
-            Delete
-          </button>
-          <button type="submit" class="btn btn-warning">
-            Modify
-          </button>
+          <form id="form1" action="/home/delete/<%= film._id %>"  method="POST">
+            <input id="delete-elem" type="hidden" class="form-control" type="text" />
+            <button type="submit" class="btn btn-danger">
+              Delete
+            </button>
+          </form>
         </td>
       </tr>
     <%});%>
