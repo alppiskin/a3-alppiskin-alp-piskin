@@ -1,8 +1,3 @@
-Assignment 3 - Persistence: Two-tier Web Application with Flat File Database, Express server, and CSS template
-===
-
-Due: September 16th, by 11:59 AM.
-
 ## Your Watchlist
 
 https://a3-alppiskin-alp-piskin.glitch.me/
